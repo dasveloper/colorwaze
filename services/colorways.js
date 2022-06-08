@@ -1,10 +1,10 @@
 import clientPromise from '@utils/mongodb';
 
-export const createColorway = async () => {
+export const createColorway = async ({ name, colors, owner }) => {
   const client = await clientPromise;
   const db = await client.db();
   const colorway = await db.collection('colorways').insertOne({
-    test: 'foobar',
+    name, colors, owner,
   });
   return colorway;
 };

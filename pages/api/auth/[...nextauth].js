@@ -5,6 +5,16 @@ import GoogleProvider from 'next-auth/providers/google';
 
 export default NextAuth({
   adapter: MongoDBAdapter(clientPromise),
+  callbacks: {
+    session: async ({ session, user }) => {
+      // Add user ID to session
+      const userSession = session;
+      if (session.user) {
+        userSession.user.userId = user.id;
+      }
+      return userSession;
+    },
+  },
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,

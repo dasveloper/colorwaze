@@ -1,15 +1,9 @@
+import ky from 'ky';
+
 export default function Home() {
   const onSubmit = async () => {
-    const res = await fetch('/api/colorways', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ }),
-    });
-    const data = await res.json();
-    console.log(data);
+    const res = await ky.post('/api/colorways', { json: { name: 'foobar', colors: ['#fcfcfc'] } }).json();
+    console.log(res);
   };
   return (
     <div>
