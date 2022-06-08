@@ -1,4 +1,5 @@
-// This approach is taken from https://github.com/vercel/next.js/tree/canary/examples/with-mongodb
+/* eslint-disable import/no-mutable-exports */
+// Taken from here: https://github.com/vercel/next.js/blob/canary/examples/with-mongodb/lib/mongodb.js
 import { MongoClient } from 'mongodb';
 
 const uri = process.env.MONGODB_URI;

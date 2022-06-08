@@ -5,7 +5,8 @@
       "alias": [
           ["@components", "./components"],
           ["@styles", "./styles"],
-          ["@utils", "./utils"]
+          ["@utils", "./utils"],
+          ["@services", "./services"]
       ]
     }
   }, 
