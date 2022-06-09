@@ -1,43 +1,46 @@
-import { Fragment } from 'react';
-import { Popover, Transition } from '@headlessui/react';
-import { CaretDown } from 'phosphor-react';
-import { Button } from '@components/common';
+// import { Fragment } from 'react';
+import {
+  Popover,
+  // Transition
+} from '@headlessui/react';
+// import { CaretDown } from 'phosphor-react';
+// import { Button } from '@components/common';
 import Link from 'next/link';
-import { useSession } from 'next-auth/react';
+// import { useSession } from 'next-auth/react';
 
-const solutions = [
-  {
-    name: 'Analytics',
-    description: 'Get a better understanding of where your traffic is coming from.',
-    href: '#',
-  },
-  {
-    name: 'Engagement',
-    description: 'Speak directly to your customers in a more meaningful way.',
-    href: '#',
-  },
-  {
-    name: 'Security', description: "Your customers' data will be safe and secure.", href: '#',
-  },
-  {
-    name: 'Integrations',
-    description: "Connect with third-party tools that you're already using.",
-    href: '#',
-  },
-  {
-    name: 'Automations',
-    description: 'Build strategic funnels that will drive your customers to convert',
-    href: '#',
-  },
-  {
-    name: 'Reports',
-    description: 'Get detailed reports that will help you make more informed decisions ',
-    href: '#',
-  },
-];
+// const solutions = [
+//   {
+//     name: 'Analytics',
+//     description: 'Get a better understanding of where your traffic is coming from.',
+//     href: '#',
+//   },
+//   {
+//     name: 'Engagement',
+//     description: 'Speak directly to your customers in a more meaningful way.',
+//     href: '#',
+//   },
+//   {
+//     name: 'Security', description: "Your customers' data will be safe and secure.", href: '#',
+//   },
+//   {
+//     name: 'Integrations',
+//     description: "Connect with third-party tools that you're already using.",
+//     href: '#',
+//   },
+//   {
+//     name: 'Automations',
+//     description: 'Build strategic funnels that will drive your customers to convert',
+//     href: '#',
+//   },
+//   {
+//     name: 'Reports',
+//     description: 'Get detailed reports that will help you make more informed decisions ',
+//     href: '#',
+//   },
+// ];
 
 export default function Nav() {
-  const { data: session, status } = useSession();
+  // const { data: session, status } = useSession();
   return (
     <Popover>
       <div className="flex items-center justify-between relative">
@@ -47,12 +50,14 @@ export default function Nav() {
               <span className="sr-only">Colorwaze home</span>
               <img
                 className="h-8 sm:h-10 w-auto"
-                src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+                src="/logo.svg"
+                width="50"
+                height="50"
                 alt="Colorwaze logo"
               />
             </a>
           </Link>
-          <Popover.Group as="nav" className="flex">
+          {/* <Popover.Group as="nav" className="flex">
             <Popover className="sm:relative">
               <>
                 <Popover.Button
@@ -108,7 +113,7 @@ export default function Nav() {
                 </Transition>
               </>
             </Popover>
-          </Popover.Group>
+          </Popover.Group> */}
         </div>
         {/* {!session && status !== 'loading' && (
         <Link href="/" passHref>

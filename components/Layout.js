@@ -1,4 +1,5 @@
 import Nav from '@components/Nav';
+import Footer from '@components/Footer';
 
 export default function Layout({ children }) {
   return (
@@ -8,6 +9,9 @@ export default function Layout({ children }) {
       </div>
       <div className="max-w-6xl mx-auto py-12 px-6 space-y-16">
         {children}
+      </div>
+      <div className="max-w-6xl mx-auto py-12 px-6">
+        <Footer />
       </div>
     </div>
   );
