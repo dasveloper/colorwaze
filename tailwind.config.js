@@ -1,5 +1,6 @@
 const typography = require('@tailwindcss/typography');
 const forms = require('@tailwindcss/forms');
+const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
   content: [
@@ -7,7 +8,10 @@ module.exports = {
     './components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
-    extend: {},
+    screens: {
+      xs: '475px',
+      ...defaultTheme.screens,
+    },
   },
   variants: {
     extend: {

@@ -8,7 +8,7 @@ export default function Palettes() {
   const {
     data, error, size, setSize,
   } = useSWRInfinite(
-    (index) => `/api/palettes?per_page=${PAGE_SIZE}&page=${
+    (index) => `/api/palettes?perPage=${PAGE_SIZE}&page=${
       index + 1
     }`,
   );
