@@ -8,7 +8,7 @@ import Link from 'next/link';
 export default function Home({ newestPalettes }) {
   return (
     <>
-      <div className="text-center py-10 max-w-6xl mx-auto px-6">
+      <div className="text-center py-8 max-w-6xl mx-auto px-6">
         <Title order={1} className="xl:text-6xl">
           Millions of color palettes
           <br />
