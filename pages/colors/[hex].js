@@ -12,7 +12,6 @@ import Palette from '@components/colors/Palette';
 import harmonies from 'colord/plugins/harmonies';
 import Contrast from '@components/colors/Contrast';
 import a11yPlugin from 'colord/plugins/a11y';
-import Layout from '@components/Layout';
 import { Title } from '@components/common';
 
 extend([cmykPlugin, xyzPlugin, hwbPlugin, labPlugin, lchPlugin, mixPlugin, harmonies, a11yPlugin]);
@@ -80,8 +79,7 @@ function Color({ hex }) {
   }
 
   return (
-    <Layout>
-
+    <>
       <section className="space-y-4">
         <div className="pb-4 border-b border-gray-300">
           <Title order={1}>
@@ -184,7 +182,7 @@ function Color({ hex }) {
         </div>
         <Contrast color={color} />
       </section>
-    </Layout>
+    </>
 
   );
 }

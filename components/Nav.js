@@ -3,6 +3,7 @@ import { Popover, Transition } from '@headlessui/react';
 import { CaretDown } from 'phosphor-react';
 import { Button } from '@components/common';
 import Link from 'next/link';
+import { useSession } from 'next-auth/react';
 
 const solutions = [
   {
@@ -36,6 +37,7 @@ const solutions = [
 ];
 
 export default function Nav() {
+  const { data: session, status } = useSession();
   return (
     <Popover>
       <div className="flex items-center justify-between relative">
@@ -108,9 +110,16 @@ export default function Nav() {
             </Popover>
           </Popover.Group>
         </div>
+        {!session && status === 'loading' && (
         <Link href="/" passHref>
           <Button size="sm" variant="light">Sign in</Button>
         </Link>
+        )}
+        {session && (
+        <Link href="/" passHref>
+          <Button size="sm" variant="light">My account</Button>
+        </Link>
+        )}
       </div>
     </Popover>
   );
