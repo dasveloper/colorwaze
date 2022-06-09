@@ -9,10 +9,12 @@ export const createPalette = async ({ name, colors, owner }) => {
   return palette;
 };
 
-export const getPalettes = async ({ limit }) => {
+export const getPalettes = async ({ skip, limit }) => {
   const client = await clientPromise;
   const db = await client.db();
-  const palettes = await db.collection('palettes').find().sort({ createdAt: 1 }).limit(limit)
+  console.log(skip, limit);
+  const palettes = await db.collection('palettes').find().sort({ createdAt: 1 }).skip(skip)
+    .limit(limit)
     .toArray();
   return palettes;
 };
