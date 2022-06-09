@@ -17,10 +17,8 @@ export const postHandler = async (req, res) => {
 };
 
 export const getHandler = async (req, res) => {
-  const { perPage, page } = req.query;
-
-  const palettes = await getPalettes({ skip: parseInt(page, 10), limit: parseInt(perPage, 10) });
-  console.log(palettes);
+  const { limit, next } = req.query;
+  const palettes = await getPalettes({ next, limit: parseInt(limit, 10) });
   return res.status(200).json(palettes);
 };
 

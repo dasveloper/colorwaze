@@ -1,4 +1,5 @@
 import clientPromise from '@utils/mongodb';
+import MongoPaging from 'mongo-cursor-pagination';
 
 export const createPalette = async ({ name, colors, owner }) => {
   const client = await clientPromise;
@@ -9,13 +10,14 @@ export const createPalette = async ({ name, colors, owner }) => {
   return palette;
 };
 
-export const getPalettes = async ({ skip, limit }) => {
+export const getPalettes = async ({ next, limit }) => {
   const client = await clientPromise;
   const db = await client.db();
-  console.log(skip, limit);
-  const palettes = await db.collection('palettes').find().sort({ createdAt: 1 }).skip(skip)
-    .limit(limit)
-    .toArray();
+  const palettes = await MongoPaging.find(db.collection('palettes'), {
+    limit,
+    next,
+  });
+
   return palettes;
 };
 

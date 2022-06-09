@@ -1,6 +1,7 @@
 import clsx from 'clsx';
+import { forwardRef } from 'react';
 
-export default function Button({
+const Button = forwardRef(({
   children,
   size = 'sm',
   variant = 'primary',
@@ -9,7 +10,7 @@ export default function Button({
   className,
   ...props
 
-}) {
+}, ref) => {
   const base = 'text-center rounded-lg focus:ring-4 focus:outline-none';
   const sizes = {
     xs: 'px-4 py-2 text-xs',
@@ -29,6 +30,7 @@ export default function Button({
 
   return (
     <Component
+      ref={ref}
       type={isLink ? undefined : type}
       href={isLink ? href : undefined}
       className={clsx(base, sizes[size], variants[variant], className)}
@@ -37,4 +39,6 @@ export default function Button({
       {children}
     </Component>
   );
-}
+});
+
+export default Button;

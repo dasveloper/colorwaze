@@ -110,7 +110,7 @@ export default function Nav() {
             </Popover>
           </Popover.Group>
         </div>
-        {!session && status === 'loading' && (
+        {/* {!session && status !== 'loading' && (
         <Link href="/" passHref>
           <Button size="sm" variant="light">Sign in</Button>
         </Link>
@@ -119,7 +119,7 @@ export default function Nav() {
         <Link href="/" passHref>
           <Button size="sm" variant="light">My account</Button>
         </Link>
-        )}
+        )} */}
       </div>
     </Popover>
   );

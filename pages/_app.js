@@ -8,7 +8,7 @@ export default function App({ Component, pageProps }) {
   return (
     <SessionProvider session={pageProps.session} refetchInterval={0}>
       <SWRConfig
-        options={{ errorRetryCount: 3 }}
+        options={{ errorRetryCount: 3, revalidateFirstPage: false }}
         value={{
           fetcher: (url) => ky.get(url).json(),
         }}

@@ -33,10 +33,10 @@ export default function Home({ newestPalettes }) {
       <section className="space-y-4">
         <div className="pb-4 border-b border-gray-300">
           <Title order={2}>
-            Best color palettes
+            Newest color palettes
           </Title>
           <p className="mt-1 dimmed">
-            Explore the top color palettes voted on by the Colorwaze community
+            Explore the newest color palettes created by the Colorwaze community
           </p>
         </div>
         <div className="grid md:grid-cols-2 gap-y-6 gap-x-12">
@@ -51,11 +51,11 @@ export default function Home({ newestPalettes }) {
 }
 
 export async function getStaticProps() {
-  const newestPalettes = await getPalettes({ skip: 0, limit: 10 });
+  const newestPalettes = await getPalettes({ limit: 10 });
 
   return {
     props: {
-      newestPalettes: JSON.parse(JSON.stringify(newestPalettes)),
+      newestPalettes: JSON.parse(JSON.stringify(newestPalettes.results)),
     },
     revalidate: 10,
   };
