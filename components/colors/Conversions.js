@@ -11,7 +11,7 @@ export default function Colorspaces({ color }) {
     return Object.values(colorObj).join(', ');
   };
   return (
-    <div className="bg-white border overflow-hidden sm:rounded-lg">
+    <div className="bg-white border border-gray-300 overflow-hidden sm:rounded-lg">
       <div className="px-4 py-5 sm:p-0 grid sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x">
         <dl className="divide-y">
           <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">

@@ -12,6 +12,7 @@ import Palette from '@components/colors/Palette';
 import harmonies from 'colord/plugins/harmonies';
 import Contrast from '@components/colors/Contrast';
 import a11yPlugin from 'colord/plugins/a11y';
+import Layout from '@components/Layout';
 
 extend([cmykPlugin, xyzPlugin, hwbPlugin, labPlugin, lchPlugin, mixPlugin, harmonies, a11yPlugin]);
 
@@ -78,112 +79,112 @@ function Color({ hex }) {
   }
 
   return (
-    <div className="min-h-screen bg-white">
-      <div className="max-w-6xl mx-auto py-12 px-6 space-y-16">
-        <section className="space-y-4">
-          <div className="pb-4 border-b border-gray-200">
-            <h3 className="text-3xl lg:text-4xl leading-7 font-bold text-gray-900">
-              {color.toHex()}
-              {' '}
-              hex color
+    <Layout>
+
+      <section className="space-y-4">
+        <div className="pb-4 border-b border-gray-300">
+          <h3 className="text-3xl lg:text-4xl leading-7 font-bold text-gray-900">
+            {color.toHex()}
+            {' '}
+            hex color
+          </h3>
+        </div>
+        <ColorHero color={color} />
+      </section>
+
+      <section className="space-y-4">
+        <div className="pb-4 border-b border-gray-300">
+          <h2 className="text-xl lg:text-2xl leading-6 font-medium text-gray-900">Conversions</h2>
+          <p className="mt-1 text-sm text-gray-500">
+            {color.toHex()}
+            {' '}
+            hex color
+            {' '}
+            converted to different color models.
+          </p>
+        </div>
+        <Conversions color={color} />
+      </section>
+
+      <section className="space-y-4">
+        <div className="pb-4 border-b border-gray-300">
+          <h2 className="text-xl lg:text-2xl leading-6 font-medium text-gray-900">Variations</h2>
+          <p className="mt-1 text-sm text-gray-500">
+            {color.toHex()}
+            {' '}
+            hex color in different shades, tints, and tones.
+          </p>
+        </div>
+        {variationsMap.map((v) => (
+          <div>
+            <h3 key={v.name} className="text-base lg:text-lg leading-5 font-medium text-gray-900">
+              {v.name}
             </h3>
-          </div>
-          <ColorHero color={color} />
-        </section>
-
-        <section className="space-y-4">
-          <div className="pb-4 border-b border-gray-200">
-            <h2 className="text-xl lg:text-2xl leading-6 font-medium text-gray-900">Conversions</h2>
             <p className="mt-1 text-sm text-gray-500">
-              {color.toHex()}
-              {' '}
-              hex color
-              {' '}
-              converted to different color models.
+              {v.description}
             </p>
+            <div className="mt-2">
+              <Palette colors={v.colors} />
+            </div>
           </div>
-          <Conversions color={color} />
-        </section>
+        ))}
 
-        <section className="space-y-4">
-          <div className="pb-4 border-b border-gray-200">
-            <h2 className="text-xl lg:text-2xl leading-6 font-medium text-gray-900">Variations</h2>
-            <p className="mt-1 text-sm text-gray-500">
-              {color.toHex()}
-              {' '}
-              hex color in different shades, tints, and tones.
-            </p>
-          </div>
-          {variationsMap.map((v) => (
-            <div>
-              <h3 key={v.name} className="text-base lg:text-lg leading-5 font-medium text-gray-900">
-                {v.name}
-              </h3>
-              <p className="mt-1 text-sm text-gray-500">
-                {v.description}
-              </p>
+      </section>
+      <section className="space-y-4">
+        <div className="pb-4 border-b border-gray-300">
+          <h2 className="text-xl lg:text-2xl leading-6 font-medium text-gray-900">Harmonies</h2>
+          <p className="mt-1 text-sm text-gray-500">
+            {color.toHex()}
+            {' '}
+            hex color in different harmonies.
+          </p>
+        </div>
+        <div className="grid md:grid-cols-2 gap-y-6 gap-x-12">
+          {harmoniesMap.map((v) => (
+            <div className="flex flex-col">
+              <div className="flex-1">
+                <h3 key={v.name} className="text-base lg:text-lg leading-5 font-medium text-gray-900">
+                  {v.name}
+                </h3>
+                <p className="mt-1 text-sm text-gray-500">
+                  {v.description}
+                </p>
+              </div>
               <div className="mt-2">
                 <Palette colors={v.colors} />
               </div>
             </div>
           ))}
+        </div>
+      </section>
+      <section className="space-y-4">
+        <div className="pb-4 border-b border-gray-300">
+          <h2 className="text-xl lg:text-2xl leading-6 font-medium text-gray-900">Opacities</h2>
+          <p className="mt-1 text-sm text-gray-500">
+            {color.toHex()}
+            {' '}
+            hex color
+            {' '}
+            in different opacities from 0 to 1.
+          </p>
+        </div>
+        <Palette colors={opacities} />
+      </section>
+      <section className="space-y-4">
+        <div className="pb-4 border-b border-gray-300">
+          <h2 className="text-xl lg:text-2xl leading-6 font-medium text-gray-900">Contrast</h2>
+          <p className="mt-1 text-sm text-gray-500">
+            {color.toHex()}
+            {' '}
+            hex color
+            {' '}
+            on white and black backgrounds.
+          </p>
+        </div>
+        <Contrast color={color} />
+      </section>
+    </Layout>
 
-        </section>
-        <section className="space-y-4">
-          <div className="pb-4 border-b border-gray-200">
-            <h2 className="text-xl lg:text-2xl leading-6 font-medium text-gray-900">Harmonies</h2>
-            <p className="mt-1 text-sm text-gray-500">
-              {color.toHex()}
-              {' '}
-              hex color in different harmonies.
-            </p>
-          </div>
-          <div className="grid md:grid-cols-2 gap-y-6 gap-x-12">
-            {harmoniesMap.map((v) => (
-              <div className="flex flex-col">
-                <div className="flex-1">
-                  <h3 key={v.name} className="text-base lg:text-lg leading-5 font-medium text-gray-900">
-                    {v.name}
-                  </h3>
-                  <p className="mt-1 text-sm text-gray-500">
-                    {v.description}
-                  </p>
-                </div>
-                <div className="mt-2">
-                  <Palette colors={v.colors} />
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-        <section className="space-y-4">
-          <div className="pb-4 border-b border-gray-200">
-            <h2 className="text-xl lg:text-2xl leading-6 font-medium text-gray-900">Opacities</h2>
-            <p className="mt-1 text-sm text-gray-500">
-              {color.toHex()}
-              {' '}
-              hex color
-              {' '}
-              in different opacities from 0 to 1.
-            </p>
-          </div>
-          <Palette colors={opacities} />
-        </section>
-        <section className="space-y-4">
-          <div className="pb-4 border-b border-gray-200">
-            <h2 className="text-xl lg:text-2xl leading-6 font-medium text-gray-900">Contrast</h2>
-            <p className="mt-1 text-sm text-gray-500">
-              {color.toHex()}
-              {' '}
-              hex color
-              {' '}
-              on white and black backgrounds.
-            </p>
-          </div>
-          <Contrast color={color} />
-        </section>
-      </div>
-    </div>
   );
 }
 

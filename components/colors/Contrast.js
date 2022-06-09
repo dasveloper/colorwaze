@@ -27,7 +27,7 @@ export default function Contrast({ color }) {
             </span>
           </div>
         </div>
-        <div className="border rounded-lg w-full py-12 p-4 bg-white text-center flex flex-col items-center justify-center space-y-2" style={{ color: color.toHex() }}>
+        <div className="border border-gray-300 rounded-lg w-full py-12 p-4 bg-white text-center flex flex-col items-center justify-center space-y-2" style={{ color: color.toHex() }}>
           <p className="text-2xl font-bold">Lorem Ipsum</p>
           <p className="text-base font-base">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
           <p className="text-sm font-thin">Quisque varius fringilla dolor ut viverra.</p>
@@ -49,7 +49,7 @@ export default function Contrast({ color }) {
             </span>
           </div>
         </div>
-        <div className="border rounded-lg w-full py-12  p-4 bg-black text-center flex flex-col items-center justify-center space-y-2" style={{ color: color.toHex() }}>
+        <div className="border border-gray-300 rounded-lg w-full py-12  p-4 bg-black text-center flex flex-col items-center justify-center space-y-2" style={{ color: color.toHex() }}>
           <p className="text-2xl font-bold">Lorem Ipsum</p>
           <p className="text-base font-base">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
           <p className="text-sm font-thin">Quisque varius fringilla dolor ut viverra.</p>
