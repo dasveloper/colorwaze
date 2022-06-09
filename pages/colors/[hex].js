@@ -13,11 +13,14 @@ import harmonies from 'colord/plugins/harmonies';
 import Contrast from '@components/colors/Contrast';
 import a11yPlugin from 'colord/plugins/a11y';
 import { Title } from '@components/common';
+import colorNameList from 'color-name-list';
+import nearestColor from 'nearest-color';
 
 extend([cmykPlugin, xyzPlugin, hwbPlugin, labPlugin, lchPlugin, mixPlugin, harmonies, a11yPlugin]);
 
-function Color({ hex }) {
+function Color({ hex, colorName }) {
   const color = colord(`#${hex}`);
+
   if (!color.isValid()) {
     return <DefaultErrorPage statusCode={404} />;
   }
@@ -81,14 +84,48 @@ function Color({ hex }) {
   return (
     <>
       <section className="space-y-4">
-        <div className="pb-4 border-b border-gray-300">
+        <div className="text-center pb-12 border-b border-gray-300">
           <Title order={1}>
-            {color.toHex()}
-            {' '}
-            hex color profile
+            {colorName && (
+            <>
+              <span className="inline-block mb-4">
+                {`${colorName.distance > 0 ? '~' : ''}${colorName.name}`}
+              </span>
+              <br />
+            </>
+            )}
+            <span className="dimmed font-medium">
+              {color.toHex()}
+              {' '}
+              hex color profile
+              {' '}
+            </span>
           </Title>
         </div>
         <ColorHero color={color} />
+      </section>
+      <section className="space-y-4">
+        <div className="pb-4 border-b border-gray-300">
+          <Title order={2}>Name</Title>
+          <p className="mt-1 dimmed">
+            {color.toHex()}
+            {' '}
+            {colorName.distance > 0 ? 'does not have a known color name. Its closest matching color name is'
+              : 'is an exact match to the known color name'}
+            {' '}
+            <strong>{colorName.name}</strong>
+            .
+          </p>
+        </div>
+        <div className="grid md:grid-cols-2 gap-y-6 gap-x-12">
+          <div className={`${color.isLight() ? 'text-gray-900' : 'text-white'} h-48 rounded-lg flex flex-col items-center justify-center border border-gray-300 space-y-2`} style={{ backgroundColor: color.toHex() }}>
+            <span className="text-xl sm:text-2xl lg:text-3xl font-bold">{color.toHex()}</span>
+          </div>
+          <div className={`${colord(colorName.value).isLight() ? 'text-gray-900' : 'text-white'} h-48 rounded-lg flex flex-col items-center justify-center border border-gray-300 space-y-2`} style={{ backgroundColor: color.toHex() }}>
+            <span className="text-xl sm:text-2xl lg:text-3xl font-bold">{colorName.name}</span>
+            <span className="text-md sm:text-lg ls">{colorName.value}</span>
+          </div>
+        </div>
       </section>
 
       <section className="space-y-4">
@@ -199,9 +236,16 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const { hex } = params;
+  const colors = colorNameList.reduce((o, { name, hex: h }) => Object.assign(o, { [name]: h }), {});
+
+  const nearest = nearestColor.from(colors);
+
+  // get closest named color
+  const colorName = nearest(`#${hex}`);
   return {
     props: {
       hex,
+      colorName,
     },
     revalidate: 60,
   };

@@ -533,6 +533,11 @@ color-convert@^2.0.1:
   dependencies:
     color-name "~1.1.4"
 
+color-name-list@^9.15.0:
+  version "9.15.0"
+  resolved "https://registry.yarnpkg.com/color-name-list/-/color-name-list-9.15.0.tgz#c68c4d28fb47183dbcb02f93a863ce3e11cd54f5"
+  integrity sha512-qejTLDwXdRdwKyD99O6Ljx+0tQPDg4iF8W8CJCJ1+PV5xiMNcro32RN1gR4kqyEMJLQbsPfKIFRpUBJBaACs/g==
+
 color-name@^1.1.4, color-name@~1.1.4:
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/color-name/-/color-name-1.1.4.tgz#c2a09a87acbde69543de6f63fa3995c826c536a2"
@@ -1631,6 +1636,11 @@ natural-compare@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
   integrity sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==
+
+nearest-color@^0.4.4:
+  version "0.4.4"
+  resolved "https://registry.yarnpkg.com/nearest-color/-/nearest-color-0.4.4.tgz#fb812072b511f4f09a0a316903332e09fa5d7f1d"
+  integrity sha512-orhcaIORC10tf41Ld2wwlcC+FaAavHG87JHWB3eHH5p7v2k9Tzym2XNEZzLAm5YJwGv6Q38WWc7SOb+Qfu/4NQ==
 
 new-array@^1.0.0:
   version "1.0.0"
