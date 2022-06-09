@@ -43,7 +43,7 @@ export default function Palettes() {
           ))}
         </div>
         <div className="flex items-center justify-center">
-          <Button ref={ref} onClick={() => nextPage()} variant="light" size="lg">Load more</Button>
+          <Button disabled={isLoading} ref={ref} onClick={() => nextPage()} variant="light" size="lg">{isLoading ? 'Loading...' : 'Load more'}</Button>
         </div>
       </section>
     </>
