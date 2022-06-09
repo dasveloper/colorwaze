@@ -15,6 +15,7 @@ import a11yPlugin from 'colord/plugins/a11y';
 import { Title } from '@components/common';
 import colorNameList from 'color-name-list';
 import nearestColor from 'nearest-color';
+import Meta from '@components/Meta';
 
 extend([cmykPlugin, xyzPlugin, hwbPlugin, labPlugin, lchPlugin, mixPlugin, harmonies, a11yPlugin]);
 
@@ -83,6 +84,10 @@ function Color({ hex, colorName }) {
 
   return (
     <>
+      <Meta
+        title={`${color.toHex()} Hex Color | ${colorName.name} Color Profile | Colorways`}
+        description={`${color.toHex()} to RGB, CMYK, HSL, and more. ${colorName.name} color palettes, contrast checker, color harmonies, and complete color profile.`}
+      />
       <section className="space-y-4">
         <div className="text-center pb-12 border-b border-gray-300">
           <Title order={1}>

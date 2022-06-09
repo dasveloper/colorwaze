@@ -7,9 +7,9 @@ export default function Layout({ children }) {
       <div className="max-w-6xl mx-auto py-6 px-6">
         <Nav />
       </div>
-      <div className="max-w-6xl mx-auto py-12 px-6 space-y-16">
+      <main className="max-w-6xl mx-auto py-12 px-6 space-y-16">
         {children}
-      </div>
+      </main>
       <div className="max-w-6xl mx-auto py-12 px-6">
         <Footer />
       </div>

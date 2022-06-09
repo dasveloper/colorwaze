@@ -43,7 +43,7 @@ export default function Nav() {
   // const { data: session, status } = useSession();
   return (
     <Popover>
-      <div className="flex items-center justify-between relative">
+      <header className="flex items-center justify-between relative">
         <div className="flex items-center space-x-8 ">
           <Link href="/">
             <a>
@@ -125,7 +125,7 @@ export default function Nav() {
           <Button size="sm" variant="light">My account</Button>
         </Link>
         )} */}
-      </div>
+      </header>
     </Popover>
   );
 }

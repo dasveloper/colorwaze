@@ -4,6 +4,7 @@ import { useRef, useEffect } from 'react';
 import usePalettes from '@hooks/palettes';
 import { Button, Title } from '@components/common';
 import useIntersection from '@hooks/useIntersectionObserver';
+import Meta from '@components/Meta';
 
 export default function Palettes() {
   const loadMoreRef = useRef();
@@ -20,6 +21,11 @@ export default function Palettes() {
   }, [observedEntry?.isIntersecting, isLoading]);
   return (
     <>
+      <Meta
+        title="Explore Infinite Color Palettes | Colorways"
+        description="Browse Infinite colors in endless color combinations. Get inspiration from the best color palettes contributed by the Colorwaze community."
+        canonical="/palettes"
+      />
       <section className="space-y-4">
         <div className="pb-4 border-b border-gray-300">
           <Title order={2}>

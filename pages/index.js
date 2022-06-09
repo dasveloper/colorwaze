@@ -4,10 +4,15 @@ import Palette from '@components/colors/Palette';
 import { Title, Button } from '@components/common';
 
 import Link from 'next/link';
+import Meta from '@components/Meta';
 
 export default function Home({ newestPalettes }) {
   return (
     <>
+      <Meta
+        title="The Worlds Best Color Palettes | Colorwaze"
+        description="Browse endless color palettes, explore millions of colors, and create your own with our color palette generator."
+      />
       <div className="text-center py-8 max-w-6xl mx-auto px-6">
         <Title order={1} className="xl:text-6xl">
           Millions of color palettes
