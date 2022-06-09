@@ -27,12 +27,12 @@ export default function Home({ newestPalettes }) {
           or create your own to share with the world.
         </p>
         <div className="mt-5 flex flex-col xs:flex-row xs:items-center xs:justify-center md:mt-8 space-y-6 xs:space-y-0 xs:space-x-6">
-          <Link href="/colors" passHref>
+          <Link href="/palettes" passHref>
             <Button size="xl" variant="light">Browse palettes</Button>
           </Link>
-          <Link href="/colors" passHref>
+          {/* <Link href="/colors" passHref>
             <Button size="xl">Create palette</Button>
-          </Link>
+          </Link> */}
         </div>
       </div>
       <section className="space-y-4">

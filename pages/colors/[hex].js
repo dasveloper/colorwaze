@@ -1,5 +1,4 @@
 import { colord, extend } from 'colord';
-import DefaultErrorPage from 'next/error';
 import Conversions from '@components/colors/Conversions';
 import cmykPlugin from 'colord/plugins/cmyk';
 import xyzPlugin from 'colord/plugins/xyz';
@@ -21,10 +20,6 @@ extend([cmykPlugin, xyzPlugin, hwbPlugin, labPlugin, lchPlugin, mixPlugin, harmo
 
 function Color({ hex, colorName }) {
   const color = colord(`#${hex}`);
-
-  if (!color.isValid()) {
-    return <DefaultErrorPage statusCode={404} />;
-  }
   const variationsMap = [
     {
       name: 'Shades',
@@ -126,7 +121,7 @@ function Color({ hex, colorName }) {
           <div className={`${color.isLight() ? 'text-gray-900' : 'text-white'} h-48 rounded-lg flex flex-col items-center justify-center border border-gray-300 space-y-2`} style={{ backgroundColor: color.toHex() }}>
             <span className="text-xl sm:text-2xl lg:text-3xl font-bold">{color.toHex()}</span>
           </div>
-          <div className={`${colord(colorName.value).isLight() ? 'text-gray-900' : 'text-white'} h-48 rounded-lg flex flex-col items-center justify-center border border-gray-300 space-y-2`} style={{ backgroundColor: color.toHex() }}>
+          <div className={`${colord(colorName.value).isLight() ? 'text-gray-900' : 'text-white'} h-48 rounded-lg flex flex-col items-center justify-center border border-gray-300 space-y-2`} style={{ backgroundColor: colorName.value }}>
             <span className="text-xl sm:text-2xl lg:text-3xl font-bold">{colorName.name}</span>
             <span className="text-md sm:text-lg ls">{colorName.value}</span>
           </div>
@@ -241,12 +236,20 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const { hex } = params;
-  const colors = colorNameList.reduce((o, { name, hex: h }) => Object.assign(o, { [name]: h }), {});
+  const color = colord(`#${hex}`);
 
+  if (!color.isValid()) {
+    return {
+      notFound: true,
+    };
+  }
+
+  const colors = colorNameList.reduce((o, { name, hex: h }) => Object.assign(o, { [name]: h }), {});
   const nearest = nearestColor.from(colors);
 
   // get closest named color
-  const colorName = nearest(`#${hex}`);
+  const colorName = nearest(color.alpha(1).toHex());
+
   return {
     props: {
       hex,
