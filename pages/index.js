@@ -34,15 +34,14 @@ export default function Home() {
                   Hex color
                 </label>
                 <div className="relative">
-                  <div className="absolute inset-y-0 left-0 flex items-center pointer-events-none">
-                    #
-                  </div>
                   <HexColorInput
+                    prefixed
+                    alpha
                     id="color-picker"
                     type="text"
                     color={color}
                     onChange={setColor}
-                    className="p-0 pl-4  block w-full border-0 text-gray-900 placeholder-gray-500 focus:ring-0 text-sm sm:text-base"
+                    className="p-0 block w-full border-0 text-gray-900 placeholder-gray-500 focus:ring-0 text-sm sm:text-base"
                   />
 
                 </div>
