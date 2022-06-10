@@ -5,3 +5,6 @@
 .dimmed {
     @apply text-gray-500;
 }
+.color-picker .react-colorful {
+    @apply w-full;
+}

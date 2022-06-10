@@ -11,7 +11,7 @@ const Button = forwardRef(({
   ...props
 
 }, ref) => {
-  const base = 'text-center rounded-lg focus:ring-4 focus:outline-none';
+  const base = 'block text-center rounded-lg focus:ring-4 focus:outline-none';
   const sizes = {
     xs: 'px-4 py-2 text-xs',
     sm: 'px-4 py-2 text-sm',

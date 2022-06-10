@@ -1,94 +1,82 @@
-import { getPalettes } from '@services/palettes';
-
-import Palette from '@components/colors/Palette';
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import { Title, Button } from '@components/common';
-import { colord, random } from 'colord';
 
 import Link from 'next/link';
 import Meta from '@components/Meta';
-import { ColorPicker, useColor } from 'react-color-palette';
-import 'react-color-palette/lib/css/styles.css';
+import { HexColorPicker, HexColorInput } from 'react-colorful';
+import { useState, useEffect } from 'react';
+import { random } from 'colord';
 
-export default function Home({ newestPalettes }) {
-  const [color, setColor] = useColor('hex', '#121212');
-
+export default function Home() {
+  const [color, setColor] = useState('#ffffff');
+  useEffect(() => {
+    setColor(random().toHex());
+  }, []);
   return (
     <>
       <Meta
-        title="The Worlds Best Color Palettes | Colorwaze"
-        description="Browse endless color palettes, explore millions of colors, and create your own with our color palette generator."
+        title="Explore over 16 million colors | Colorwaze"
+        description="Browse endless colors, variations, names, and more with the largest color database."
       />
-      <div className="text-center py-8 max-w-6xl mx-auto px-6">
+      <div className="text-center py-6 max-w-6xl mx-auto px-6">
         <Title order={1} className="xl:text-6xl">
-          Millions of color palettes
-          <br />
-          {' '}
-          and profiles to explore
+          Millions of colors to explore
         </Title>
         <p className="mt-5 dimmed sm:text-lg md:text-xl">
-          Browse endless hand crafted color palettes,
-          <br className="lg:hidden" />
-          {' '}
-          or create your own to share with the world.
+          Discover new colors while learning about color names, variations, accessibility, and more!
         </p>
-        <div className="mt-5 flex flex-col xs:flex-row xs:items-center xs:justify-center md:mt-8 space-y-6 xs:space-y-0 xs:space-x-6">
-          <Link href="/palettes" passHref>
-            <Button size="xl" variant="light">Browse palettes</Button>
-          </Link>
-          {/* <Link href="/colors" passHref>
-            <Button size="xl">Create palette</Button>
-          </Link> */}
+        <div className="mt-12 color-picker max-w-2xl mx-auto">
+          <div className="flex w-full mb-4 space-x-4 align-bottom">
+            <div className="rounded-md w-16 self-stretch border border-gray-300" style={{ background: color }} />
+            <div className="flex-1">
+              <div className="text-left border border-gray-300 rounded-md px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+                <label htmlFor="color-picker" className="sr-only">
+                  Hex color
+                </label>
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 flex items-center pointer-events-none">
+                    #
+                  </div>
+                  <HexColorInput
+                    id="color-picker"
+                    type="text"
+                    color={color}
+                    onChange={setColor}
+                    className="p-0 pl-4  block w-full border-0 text-gray-900 placeholder-gray-500 focus:ring-0 text-sm sm:text-base"
+                  />
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <HexColorPicker color={color} onChange={setColor} />
         </div>
+        <div className="mt-5 flex flex-col xs:flex-row xs:items-center xs:justify-center md:mt-8 space-y-6 xs:space-y-0 xs:space-x-6">
+          <Link href={`/colors/${color.slice(1)}`} passHref>
+            <Button size="xl" variant="light">
+              View color
+              {' '}
+              {color}
+            </Button>
+          </Link>
+        </div>
+
       </div>
-      <ColorPicker width="100%" height={300} color={color} onChange={setColor} hideHSV />
+      {/*
       <section className="space-y-4">
         <div className="pb-4 border-b border-gray-300">
           <Title order={2}>
-            Newest color palettes
+            Most likes colors
           </Title>
           <p className="mt-1 dimmed">
             Explore the newest color palettes created by the Colorwaze community
           </p>
         </div>
         <div className="grid md:grid-cols-2 gap-y-6 gap-x-12">
-          {newestPalettes.map((v) => (
-            <Palette key={v.color} colors={v.colors} />
-          ))}
+          Temp
         </div>
-      </section>
-
+      </section> */}
     </>
   );
-}
-
-export async function getStaticProps() {
-  const randomColor = random();
-  const newestPalettes = await getPalettes({ limit: 10 });
-
-  const numberRegex = /^[0-9]+$/;
-  const amountRegex = /^(?!0\.00)[1-9]\d{0,2}(,\d{3})*(\.\d\d)?$/;
-  const strip = (item) => item.replace(/['"]+/g, '');
-  const clientData = responses.data.reduce((acc, el) => {
-    const [number, type, amount] = Object.keys(el);
-    if (number !== '' && type !== '' && amount !== '') {
-      const formattedNumber = strip(number);
-      const formattedType = strip(number).toLowerCase();
-      const formattedAmount = strip(number);
-
-      acc.concat({
-        number: formattedNumber.match(numberRegex) ? Number(formattedNumber) : formattedNumber,
-        type: (formattedType === 'increase' || formattedType === 'decrease') ? types : 'Null',
-        amount: formattedAmount.match(amountRegex) ? formattedAmount : 0,
-      });
-    }
-    return acc;
-  }, []);
-
-  return {
-    props: {
-      newestPalettes: JSON.parse(JSON.stringify(newestPalettes.results)),
-      randomColor: randomColor.toHex(),
-    },
-    revalidate: 10,
-  };
 }

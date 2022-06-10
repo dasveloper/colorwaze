@@ -46,10 +46,10 @@ export default function Nav() {
       <header className="flex items-center justify-between relative">
         <div className="flex items-center space-x-8 ">
           <Link href="/">
-            <a>
+            <a className="hover:bg-gray-200 rounded-full">
               <span className="sr-only">Colorwaze home</span>
               <img
-                className="h-8 sm:h-10 w-auto"
+                className="h-10 sm:h-12 w-auto"
                 src="/logo.svg"
                 width="50"
                 height="50"
