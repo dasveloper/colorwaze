@@ -110,7 +110,8 @@ function Color({ hex, colorName }) {
         <div className="pb-4 border-b border-gray-300">
           <Title order={2}>Name</Title>
           <p className="mt-1 dimmed">
-            {color.toHex()}
+            {color.alpha() < 1 && `${color.toHex()} is a variant of the color ${color.alpha(1).toHex()}. `}
+            {color.alpha(1).toHex()}
             {' '}
             {colorName.distance > 0 ? 'does not have a known color name. Its closest matching color name is'
               : 'is an exact match to the known color name'}
