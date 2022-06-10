@@ -77,11 +77,13 @@ function Color({ hex, colorName }) {
     opacities.push(color.alpha(i));
   }
 
+  const longName = colorName.distance === 0 ? colorName.name : `${color.toHex()} hex color`;
+
   return (
     <>
       <Meta
         title={`${color.toHex()} Hex Color | ${colorName.name} Color Profile | Colorways`}
-        description={`${color.toHex()} to RGB, CMYK, HSL, and more. ${colorName.name} color palettes, contrast checker, color harmonies, and complete color profile.`}
+        description={`${longName} to Hex, RGB, CMYK, HSL, and more. ${longName} color palettes, contrast checker, color harmonies, and complete color profile.`}
       />
       <section className="space-y-4">
         <div className="text-center pb-12 border-b border-gray-300">
@@ -132,9 +134,7 @@ function Color({ hex, colorName }) {
         <div className="pb-4 border-b border-gray-300">
           <Title order={2}>Conversions</Title>
           <p className="mt-1 dimmed">
-            {color.toHex()}
-            {' '}
-            hex color
+            {longName}
             {' '}
             converted to different color models.
           </p>
@@ -146,9 +146,9 @@ function Color({ hex, colorName }) {
         <div className="pb-4 border-b border-gray-300">
           <Title order={2}>Variations</Title>
           <p className="mt-1 dimmed">
-            {color.toHex()}
+            {longName}
             {' '}
-            hex color in different shades, tints, and tones.
+            in different shades, tints, and tones.
           </p>
         </div>
         {variationsMap.map((v) => (
@@ -170,9 +170,9 @@ function Color({ hex, colorName }) {
         <div className="pb-4 border-b border-gray-300">
           <Title order={2}>Harmonies</Title>
           <p className="mt-1 dimmed">
-            {color.toHex()}
+            {longName}
             {' '}
-            hex color in different harmonies.
+            in different harmonies.
           </p>
         </div>
         <div className="grid md:grid-cols-2 gap-y-6 gap-x-12">
@@ -197,9 +197,7 @@ function Color({ hex, colorName }) {
         <div className="pb-4 border-b border-gray-300">
           <Title order={2}>Opacities</Title>
           <p className="mt-1 dimmed">
-            {color.toHex()}
-            {' '}
-            hex color
+            {longName}
             {' '}
             in different opacities from 0 to 1.
           </p>
@@ -210,9 +208,7 @@ function Color({ hex, colorName }) {
         <div className="pb-4 border-b border-gray-300">
           <Title order={2}>Contrast</Title>
           <p className="mt-1 dimmed">
-            {color.toHex()}
-            {' '}
-            hex color
+            {longName}
             {' '}
             on white and black backgrounds.
           </p>
