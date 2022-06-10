@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import { colord, extend } from 'colord';
 import Conversions from '@components/colors/Conversions';
 import cmykPlugin from 'colord/plugins/cmyk';
@@ -15,11 +16,34 @@ import { Title } from '@components/common';
 import colorNameList from 'color-name-list';
 import nearestColor from 'nearest-color';
 import Meta from '@components/Meta';
+import { HexColorInput, RgbaColorPicker } from 'react-colorful';
+import useClickOutside from '@hooks/useClickOutside';
+import {
+  useState, useRef, useCallback, useMemo, useEffect,
+} from 'react';
+import useDebounce from '@hooks/useDebounce';
+import { useRouter } from 'next/router';
+
+const colors = colorNameList.reduce((o, { name, hex: h }) => Object.assign(o, { [name]: h }), {});
+const nearest = nearestColor.from(colors);
 
 extend([cmykPlugin, xyzPlugin, hwbPlugin, labPlugin, lchPlugin, mixPlugin, harmonies, a11yPlugin]);
 
-function Color({ hex, colorName }) {
-  const color = colord(`#${hex}`);
+function Color({ hex }) {
+  const router = useRouter();
+
+  const [colorPicker, setColorPicker] = useState(colord(`#${hex}`));
+
+  const color = useDebounce(colorPicker, 500);
+  useEffect(() => {
+    router.push(`/colors/${color.toHex().slice(1)}`, undefined, { shallow: true });
+  }, [color]);
+  // get closest named color
+  const colorName = useMemo(() => nearest(color.alpha(1).toHex()), [color]);
+  const popover = useRef();
+  const [isOpen, toggle] = useState(false);
+  const close = useCallback(() => toggle(false), []);
+  useClickOutside(popover, close);
   const variationsMap = [
     {
       name: 'Shades',
@@ -103,6 +127,36 @@ function Color({ hex, colorName }) {
               {' '}
             </span>
           </Title>
+          <div className="mt-8 max-w-xl mx-auto">
+            <label htmlFor="color-picker" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Choose new color</label>
+            <div className="relative border border-gray-300 rounded-md pl-3 pr-1  py-1 shadow-sm focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600 flex items-center">
+              <HexColorInput
+                id="color-picker"
+                prefixed
+                alpha
+                type="text"
+                color={colorPicker.toHex()}
+                onChange={(c) => setColorPicker(colord(c))}
+                className="p-0 block w-full border-0 text-gray-900 placeholder-gray-500 focus:ring-0 text-sm sm:text-base"
+              />
+              <button
+                type="submit"
+                onClick={() => toggle(true)}
+                className="text-white right-2.5 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-md text-sm px-2 py-2 w-10 h-10"
+                style={{ backgroundColor: colorPicker.toHex() }}
+              >
+                <span className="sr-only">Choose color</span>
+              </button>
+              {isOpen && (
+              <div className="absolute top-full mt-2 right-0 rounded-md shadow-md" ref={popover}>
+                <RgbaColorPicker
+                  color={colord(colorPicker).toRgb()}
+                  onChange={(c) => setColorPicker(colord(c))}
+                />
+              </div>
+              )}
+            </div>
+          </div>
         </div>
         <ColorHero color={color} />
       </section>
@@ -241,16 +295,9 @@ export async function getStaticProps({ params }) {
     };
   }
 
-  const colors = colorNameList.reduce((o, { name, hex: h }) => Object.assign(o, { [name]: h }), {});
-  const nearest = nearestColor.from(colors);
-
-  // get closest named color
-  const colorName = nearest(color.alpha(1).toHex());
-
   return {
     props: {
       hex,
-      colorName,
     },
     revalidate: 60,
   };
