@@ -23,6 +23,7 @@ import {
 } from 'react';
 import useDebounce from '@hooks/useDebounce';
 import { useRouter } from 'next/router';
+import ColorPicker from '@components/ColorPicker';
 
 const colors = colorNameList.reduce((o, { name, hex: h }) => Object.assign(o, { [name]: h }), {});
 const nearest = nearestColor.from(colors);
@@ -32,9 +33,9 @@ extend([cmykPlugin, xyzPlugin, hwbPlugin, labPlugin, lchPlugin, mixPlugin, harmo
 function Color({ hex }) {
   const router = useRouter();
 
-  const [colorPicker, setColorPicker] = useState(colord(`#${hex}`));
+  const [colorPicker, setColorPicker] = useState(`#${hex}`);
 
-  const color = useDebounce(colorPicker, 500);
+  const color = useDebounce(colord(colorPicker), 500);
   useEffect(() => {
     router.push(`/colors/${color.toHex().slice(1)}`, undefined, { shallow: true });
   }, [color]);
@@ -128,9 +129,17 @@ function Color({ hex }) {
             </span>
           </Title>
           <div className="mt-8 max-w-xl mx-auto">
-            <label htmlFor="color-picker" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Choose new color</label>
+            <ColorPicker
+              id="color-picker"
+              prefixed
+              alpha
+              type="text"
+              color={colorPicker}
+              onChange={setColorPicker}
+            />
+            {/* <label htmlFor="color-picker" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Choose new color</label>
             <div className="relative border border-gray-300 rounded-md pl-3 pr-1  py-1 shadow-sm focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600 flex items-center">
-              <HexColorInput
+              { <HexColorInput
                 id="color-picker"
                 prefixed
                 alpha
@@ -139,6 +148,7 @@ function Color({ hex }) {
                 onChange={(c) => setColorPicker(colord(c))}
                 className="p-0 block w-full border-0 text-gray-900 placeholder-gray-500 focus:ring-0 text-sm sm:text-base"
               />
+
               <button
                 type="submit"
                 onClick={() => toggle(true)}
@@ -155,7 +165,7 @@ function Color({ hex }) {
                 />
               </div>
               )}
-            </div>
+            </div> */}
           </div>
         </div>
         <ColorHero color={color} />
