@@ -59,14 +59,14 @@ function AccessibilityTester() {
           <div>
             <p className="block mb-1 text-sm font-medium text-gray-500">Normal text</p>
             <div className="space-x-2 whitespace-nowrap">
-              <span className={`${readableAA ? passColors : failColors} inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800`}>
+              <span className={`${readableAA ? passColors : failColors} inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium`}>
                 {readableAA
                   ? <Check weight="bold" className="-ml-1 mr-1.5 h-4 w-4" />
                   : <X weight="bold" className="-ml-1 mr-1.5 h-4 w-4" />}
                 {' '}
                 WCAG AA
               </span>
-              <span className={`${readableAAA ? passColors : failColors} inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800`}>
+              <span className={`${readableAAA ? passColors : failColors} inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium`}>
                 {readableAAA
                   ? <Check weight="bold" className="-ml-1 mr-1.5 h-4 w-4" />
                   : <X weight="bold" className="-ml-1 mr-1.5 h-4 w-4" />}
@@ -78,13 +78,13 @@ function AccessibilityTester() {
           <div>
             <p className="block mb-1 text-sm font-medium text-gray-500">Large text</p>
             <div className="space-x-2 whitespace-nowrap">
-              <span className={`${readableLargeAA ? passColors : failColors} inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800`}>
+              <span className={`${readableLargeAA ? passColors : failColors} inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium`}>
                 {readableLargeAA
                   ? <Check weight="bold" className="-ml-1 mr-1.5 h-4 w-4" />
                   : <X weight="bold" className="-ml-1 mr-1.5 h-4 w-4" />}
                 WCAG AA
               </span>
-              <span className={`${readableLargeAAA ? passColors : failColors} inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800`}>
+              <span className={`${readableLargeAAA ? passColors : failColors} inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium`}>
                 {readableLargeAAA
                   ? <Check weight="bold" className="-ml-1 mr-1.5 h-4 w-4" />
                   : <X weight="bold" className="-ml-1 mr-1.5 h-4 w-4" />}
