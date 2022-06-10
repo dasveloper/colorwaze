@@ -3,9 +3,9 @@ import { Title, Button } from '@components/common';
 
 import Link from 'next/link';
 import Meta from '@components/Meta';
-import { HexColorPicker, HexColorInput } from 'react-colorful';
+import { HexColorInput, RgbaColorPicker } from 'react-colorful';
 import { useState, useEffect } from 'react';
-import { random } from 'colord';
+import { random, colord } from 'colord';
 
 export default function Home() {
   const [color, setColor] = useState('#ffffff');
@@ -50,7 +50,10 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <HexColorPicker color={color} onChange={setColor} />
+          <RgbaColorPicker
+            color={colord(color).toRgb()}
+            onChange={(c) => setColor(colord(c).toHex())}
+          />
         </div>
         <div className="mt-5 flex flex-col xs:flex-row xs:items-center xs:justify-center md:mt-8 space-y-6 xs:space-y-0 xs:space-x-6">
           <Link href={`/colors/${color.slice(1)}`} passHref>
