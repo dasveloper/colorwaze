@@ -39,7 +39,7 @@ export default function Palettes() {
       <section className="space-y-6">
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-y-12 gap-x-12">
           {data.map((v) => (
-            <Palette key={v._id} colors={v.colors} />
+            <p>{JSON.stringify(v.colors)}</p>
           ))}
         </div>
         <div className="flex items-center justify-center">

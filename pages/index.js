@@ -2,11 +2,16 @@ import { getPalettes } from '@services/palettes';
 
 import Palette from '@components/colors/Palette';
 import { Title, Button } from '@components/common';
+import { colord, random } from 'colord';
 
 import Link from 'next/link';
 import Meta from '@components/Meta';
+import { ColorPicker, useColor } from 'react-color-palette';
+import 'react-color-palette/lib/css/styles.css';
 
 export default function Home({ newestPalettes }) {
+  const [color, setColor] = useColor('hex', '#121212');
+
   return (
     <>
       <Meta
@@ -35,6 +40,7 @@ export default function Home({ newestPalettes }) {
           </Link> */}
         </div>
       </div>
+      <ColorPicker width="100%" height={300} color={color} onChange={setColor} hideHSV />
       <section className="space-y-4">
         <div className="pb-4 border-b border-gray-300">
           <Title order={2}>
@@ -56,11 +62,32 @@ export default function Home({ newestPalettes }) {
 }
 
 export async function getStaticProps() {
+  const randomColor = random();
   const newestPalettes = await getPalettes({ limit: 10 });
+
+  const numberRegex = /^[0-9]+$/;
+  const amountRegex = /^(?!0\.00)[1-9]\d{0,2}(,\d{3})*(\.\d\d)?$/;
+  const strip = (item) => item.replace(/['"]+/g, '');
+  const clientData = responses.data.reduce((acc, el) => {
+    const [number, type, amount] = Object.keys(el);
+    if (number !== '' && type !== '' && amount !== '') {
+      const formattedNumber = strip(number);
+      const formattedType = strip(number).toLowerCase();
+      const formattedAmount = strip(number);
+
+      acc.concat({
+        number: formattedNumber.match(numberRegex) ? Number(formattedNumber) : formattedNumber,
+        type: (formattedType === 'increase' || formattedType === 'decrease') ? types : 'Null',
+        amount: formattedAmount.match(amountRegex) ? formattedAmount : 0,
+      });
+    }
+    return acc;
+  }, []);
 
   return {
     props: {
       newestPalettes: JSON.parse(JSON.stringify(newestPalettes.results)),
+      randomColor: randomColor.toHex(),
     },
     revalidate: 10,
   };
