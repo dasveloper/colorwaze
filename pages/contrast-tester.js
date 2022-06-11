@@ -64,14 +64,14 @@ function AccessibilityTester() {
                   ? <Check weight="bold" className="-ml-1 mr-1.5 h-4 w-4" />
                   : <X weight="bold" className="-ml-1 mr-1.5 h-4 w-4" />}
                 {' '}
-                WCAG AA
+                AA
               </span>
               <span className={`${readableAAA ? passColors : failColors} inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium`}>
                 {readableAAA
                   ? <Check weight="bold" className="-ml-1 mr-1.5 h-4 w-4" />
                   : <X weight="bold" className="-ml-1 mr-1.5 h-4 w-4" />}
                 {' '}
-                WCAG AAA
+                AAA
               </span>
             </div>
           </div>
@@ -82,13 +82,13 @@ function AccessibilityTester() {
                 {readableLargeAA
                   ? <Check weight="bold" className="-ml-1 mr-1.5 h-4 w-4" />
                   : <X weight="bold" className="-ml-1 mr-1.5 h-4 w-4" />}
-                WCAG AA
+                AA
               </span>
               <span className={`${readableLargeAAA ? passColors : failColors} inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium`}>
                 {readableLargeAAA
                   ? <Check weight="bold" className="-ml-1 mr-1.5 h-4 w-4" />
                   : <X weight="bold" className="-ml-1 mr-1.5 h-4 w-4" />}
-                WCAG AAA
+                AAA
               </span>
             </div>
           </div>
