@@ -27,16 +27,18 @@ export default function PaletteCreatorItem({ item, index, setItems }) {
             ref={p.innerRef}
             {...p.draggableProps}
             {...p.dragHandleProps}
-            className={`${s.isDragging ? 'shadow-lg' : ''} flex-1`}
-            style={{ ...p.draggableProps.style, background: color.toHex() }}
+            className={`${s.isDragging ? 'shadow-lg' : ''} flex-1 bg-white`}
+            style={{ ...p.draggableProps.style }}
           >
-            <div className={`${color.isLight() ? 'text-gray-900' : 'text-white'} group flex flex-col justify-between space-y-2 items-center h-full w-full py-6`}>
-              <span className="text-base uppercase font-medium" style={{ writingMode: 'vertical-lr', textOrientation: 'upright' }}>{color.toHex()}</span>
-              <div className="flex flex-col space-y-4">
+            <div className={`${color.isLight() ? 'text-gray-900' : 'text-white'} group flex flex-col h-full w-full`}>
+              <div className="flex-1 w-full h-full flex justify-center items-center" style={{ background: color.toHex() }}>
+                <span className="text-base uppercase font-medium " style={{ writingMode: 'vertical-lr', textOrientation: 'upright' }}>{color.toHex()}</span>
+              </div>
+              <div className="flex flex-col space-y-4 py-4 justify-between items-center">
                 <button
                   type="button"
                   onClick={() => setItems((prev) => prev.filter((i) => i.id !== item.id))}
-                  className={`${color.isLight() ? 'text-gray-900 border-gray-900 hover:bg-gray-900/[.2]' : 'text-white border-white hover:bg-white/[.2]'} inline-flex items-center p-1  rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 border`}
+                  className="text-gray-900 border-gray-300 inline-flex items-center p-1  rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 border"
                 >
                   <Trash className="h-5 w-5" aria-hidden="true" />
                   <span className="sr-only">Remove item</span>
@@ -45,7 +47,7 @@ export default function PaletteCreatorItem({ item, index, setItems }) {
                   <button
                     type="button"
                     onClick={() => setOpen(true)}
-                    className={`${color.isLight() ? 'text-gray-900 border-gray-900 hover:bg-gray-900/[.2]' : 'text-white border-white hover:bg-white/[.2]'} inline-flex items-center p-1  rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 border`}
+                    className="text-gray-900 border-gray-300 inline-flex items-center p-1  rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 border"
                   >
                     <Palette className="h-5 w-5" aria-hidden="true" />
                     <span className="sr-only">Change color</span>

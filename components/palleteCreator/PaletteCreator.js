@@ -31,7 +31,7 @@ function PaletteCreator({ items, setItems }) {
           <div
             {...provided.droppableProps}
             ref={provided.innerRef}
-            className="bg-gray-50 h-full flex border"
+            className="h-full flex divide-x border"
           >
             {items.map((item, index) => (
               <PaletteCreatorItem key={item.id} item={item} index={index} setItems={setItems} />

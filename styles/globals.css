@@ -12,3 +12,11 @@
 .palette-picker .react-colorful__last-control {
     border-radius: 0;
 }
+
+.my-color-wheel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    max-width: 400px;
+  }
