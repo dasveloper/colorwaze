@@ -37,11 +37,10 @@ export default function ColorPicker({
           <span className="sr-only">Choose color</span>
         </button>
         {isOpen && (
-        <div className="absolute top-full mt-2 right-0 rounded-md shadow-md" ref={popover}>
+        <div className="absolute top-full mt-2 right-0 rounded-md shadow-md z-40" ref={popover}>
           <Component
             color={isHex ? colord(color).toHex() : colord(color).toRgb()}
             onChange={(c) => onChange(colord(c).toHex())}
-
           />
         </div>
         )}
