@@ -4,21 +4,26 @@ import { Button } from '@components/common';
 import { nanoid } from 'nanoid';
 
 const PaletteCreator = dynamic(
-  () => import('@components/PaletteCreator'),
+  () => import('@components/palleteCreator/PaletteCreator'),
   { ssr: false },
 );
+
 function Generator() {
   const [items, setItems] = useState([
     { color: '#ffffff', id: nanoid() },
+    { color: '#ffffff', id: nanoid() },
+    { color: '#ffffff', id: nanoid() },
+    { color: '#ffffff', id: nanoid() },
+    { color: '#ffffff', id: nanoid() },
   ]);
   const handleAddItem = () => {
-    if (items.length < 10) {
+    if (items.length < 5) {
       setItems((prev) => [...prev, { color: '#ffffff', id: nanoid() }]);
     }
   };
 
   return (
-    <div className="h-64">
+    <div className="h-96">
       <div className="flex py-4">
         <Button onClick={handleAddItem}>Add Item</Button>
       </div>

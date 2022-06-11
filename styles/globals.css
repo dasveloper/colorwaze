@@ -8,3 +8,7 @@
 .color-picker .react-colorful {
     @apply w-full;
 }
+
+.palette-picker .react-colorful__last-control {
+    border-radius: 0;
+}
