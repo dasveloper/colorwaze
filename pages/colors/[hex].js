@@ -13,33 +13,29 @@ import harmonies from 'colord/plugins/harmonies';
 import Contrast from '@components/colors/Contrast';
 import a11yPlugin from 'colord/plugins/a11y';
 import { Title } from '@components/common';
-import colorNameList from 'color-name-list';
-import nearestColor from 'nearest-color';
 import Meta from '@components/Meta';
 import {
-  useState, useMemo, useEffect,
+  useState, useEffect, useMemo,
 } from 'react';
 import useDebounce from '@hooks/useDebounce';
 import { useRouter } from 'next/router';
 import ColorPicker from '@components/ColorPicker';
-
-const colors = colorNameList.reduce((o, { name, hex: h }) => Object.assign(o, { [name]: h }), {});
-const nearest = nearestColor.from(colors);
+import { getColorName } from '@services/colors';
+import useColorName from '@hooks/useColorName';
 
 extend([cmykPlugin, xyzPlugin, hwbPlugin, labPlugin, lchPlugin, mixPlugin, harmonies, a11yPlugin]);
 
-function Color({ hex }) {
+function Color({ hex, initialColorName }) {
   const router = useRouter();
-
   const [colorPicker, setColorPicker] = useState(`#${hex}`);
+  const dbcolor = useDebounce(colorPicker, 500);
+  const { colorName } = useColorName(dbcolor, { colorName: initialColorName });
 
-  const color = useDebounce(colord(colorPicker), 500);
+  const color = useMemo(() => colord(dbcolor), [dbcolor]);
+
   useEffect(() => {
     router.push(`/colors/${color.toHex().slice(1)}`, undefined, { shallow: true });
   }, [color]);
-
-  // get closest named color
-  const colorName = useMemo(() => nearest(color.alpha(1).toHex()), [color]);
 
   const variationsMap = [
     {
@@ -272,9 +268,11 @@ export async function getStaticProps({ params }) {
     };
   }
 
+  const initialColorName = getColorName(color);
   return {
     props: {
       hex,
+      initialColorName,
     },
     revalidate: 60,
   };
