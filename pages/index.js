@@ -56,7 +56,7 @@ export default function Home() {
         </div>
         <div className="mt-5 flex flex-col xs:flex-row xs:items-center xs:justify-center md:mt-8 space-y-6 xs:space-y-0 xs:space-x-6">
           <Link href={`/colors/${color.slice(1)}`} passHref>
-            <Button size="xl" variant="light">
+            <Button size="xl">
               View color
               {' '}
               {color}
