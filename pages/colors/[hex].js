@@ -236,12 +236,12 @@ function Color({ hex, initialColorName }) {
         <div className="pb-4 border-b border-gray-300">
           <Title order={2}>Contrast</Title>
           <p className="mt-1 dimmed">
-            {longName}
+            {color.alpha(1).toHex()}
             {' '}
-            on white and black backgrounds.
+            hex color on white and black backgrounds.
           </p>
         </div>
-        <Contrast color={color} />
+        <Contrast color={color.alpha(1)} />
       </section>
     </>
 
