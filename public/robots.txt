@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://colorwaze.com
+
+# Sitemaps
+Sitemap: https://colorwaze.com/sitemap.xml
