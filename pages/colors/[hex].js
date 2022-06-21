@@ -20,7 +20,7 @@ import { useRouter } from 'next/router'
 import ColorPicker from '@components/ColorPicker'
 import { getColorName } from '@services/colors'
 import useColorName from '@hooks/useColorName'
-import colorNameList from 'color-name-list'
+// import colorNameList from 'color-name-list'
 
 extend([cmykPlugin, xyzPlugin, hwbPlugin, labPlugin, lchPlugin, mixPlugin, harmonies, a11yPlugin])
 
@@ -215,10 +215,12 @@ function Color({ hex, initialColorName }) {
 export default Color
 
 export async function getStaticPaths() {
-  const paths = colorNameList.map(color => ({
+  // const paths = colorNameList.map(color => ({
+  //   params: { hex: color.hex.slice(1) },
+  // }))
+  const paths = [].map(color => ({
     params: { hex: color.hex.slice(1) },
   }))
-
   return { paths, fallback: 'blocking' }
 }
 
