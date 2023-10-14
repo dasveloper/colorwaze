@@ -10,7 +10,7 @@ export default function CoolorsCTA({ color }) {
           <span className="block">Try Coolors palette generator.</span>
         </h2>
         <p className="mt-4 text-lg leading-6">
-          Ac euismod vel sit maecenas id pellentesque eu sed consectetur. Malesuada adipiscing sagittis vel nulla nec.
+          With Coolors you can create, explore, and save stunning color palettes.
         </p>
         <a
           href="https://coolors.co/?ref=629fe563c3b4ba000af28ff7"
