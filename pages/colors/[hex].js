@@ -20,6 +20,7 @@ import { useRouter } from 'next/router'
 import ColorPicker from '@components/ColorPicker'
 import { getColorName } from '@services/colors'
 import useColorName from '@hooks/useColorName'
+import CoolorsCTA from '@components/CoolorsCTA'
 // import colorNameList from 'color-name-list'
 
 extend([cmykPlugin, xyzPlugin, hwbPlugin, labPlugin, lchPlugin, mixPlugin, harmonies, a11yPlugin])
@@ -208,6 +209,9 @@ function Color({ hex, initialColorName }) {
         </div>
         <Contrast color={color.alpha(1)} />
       </section>
+      <aside>
+        <CoolorsCTA color={color} />
+      </aside>
     </>
   )
 }
