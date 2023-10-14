@@ -6,7 +6,7 @@ import { Sparkle } from 'phosphor-react'
 export default function Nav() {
   return (
     <Popover>
-      <header className="flex items-center justify-between relative">
+      <header className="flex items-center justify-between gap-x-4 relative">
         <Link href="/">
           <a className="hover:bg-gray-200 rounded-full">
             <span className="sr-only">Colorwaze home</span>
@@ -16,7 +16,7 @@ export default function Nav() {
         <div className="flex items-center">
           <Sparkle weight="bold" className="-ml-1 mr-1.5 h-4 w-4 text-amber-500" />
           <a href="https://coolors.co/?ref=629fe563c3b4ba000af28ff7" target="_blank" rel="noopener noreferrer">
-            Want to save your favorite colors? <strong>Try Coolors!</strong>
+            Love colors? <strong>Try Coolors!</strong>
           </a>
         </div>
       </header>
