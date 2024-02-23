@@ -2,6 +2,7 @@ import '@styles/globals.css'
 import { SWRConfig } from 'swr'
 import ky from 'ky'
 import Layout from '@components/Layout'
+import { Analytics } from '@vercel/analytics/react'
 
 export default function App({ Component, pageProps }) {
   return (
@@ -13,6 +14,7 @@ export default function App({ Component, pageProps }) {
     >
       <Layout>
         <Component {...pageProps} />
+        <Analytics />
       </Layout>
     </SWRConfig>
   )

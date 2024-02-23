@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.6.4",
+    "@vercel/analytics": "^1.2.2",
     "clsx": "^1.1.1",
     "color-name-list": "^9.15.0",
     "colord": "^2.9.2",
